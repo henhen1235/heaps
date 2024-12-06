@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-class heap(){
+class heap {
  public:
   void add(int value);
   int removelargest();
