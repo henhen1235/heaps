@@ -1,9 +1,13 @@
 #include <iostream>
 #include <cstring>
+#include "heap.h"
 
 heap::heap(){
   position = 1;
   heap = new array[100];
+}
+
+heap::~heap(){
 }
 
 void heap::add(int value){
@@ -27,6 +31,7 @@ void heap::add(int value){
 int heap::removelargest(){
   int p1 = heap[1];
   heap[1] = heap[position];
+  heap[position] = NULL;
   position = position - 1;
   int start = 1 
     while(start * 2 < position){
@@ -59,14 +64,20 @@ void heap::display(){
   if (position = 1) {
     return;
   }
-  int tempposition = 1;
-  int row = 1
-  while(tempposition < position){
-    while(tempposition < row * 2){
-      cout << heap(tempposition);
-      tempposition = tempposition + 1;
-    }
-    row = row * 2;
-    cout << endl;
+  int depth = 0;
+  int start = 1;
+  displayrunner(start, depth, position);
+}
+
+void heap::displayrunner(int tempposition, int times, int size){
+  if(tempposition * 2 + 1 < size){
+    displayrunner(tempposition * 2 + 1, depth + 1, size);
+  }
+  for(int x = 0; x < depth; x++){
+    cout << '\t';
+  }
+  cout << heaps[tempposition] << endl;
+  if(tempposition * 2 < size){
+    displayrunner(tempposition *2, depth +1,size)
   }
 }
