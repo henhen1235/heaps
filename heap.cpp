@@ -1,17 +1,20 @@
 #include <iostream>
-#include <cstring>
 #include "heap.h"
+#include <cstring>
+#include <math.h> 
+
+using namespace std;
 
 heap::heap(){
   position = 1;
-  heap = new array[100];
+  heap = new int[100];
 }
 
 heap::~heap(){
 }
 
 void heap::add(int value){
-  if (position => 100){
+  if (position >= 100){
     cout << "you are out of bounds";
   }
   else{
