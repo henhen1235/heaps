@@ -8,6 +8,9 @@ using namespace std;
 heap::heap(){
   position = 1;
   heapar = new int[100];
+  for(int x = 0; x < 100; x++) {
+     heapar[x] = 0; // Initialize all elements to 0
+  }
 }
 
 heap::~heap(){
@@ -43,24 +46,36 @@ int heap::removelargest(){//____________________________________________________
   heapar[position] = 0;
   position = position - 1;
   int start = 1; 
-    while(start * 2 + 1 < position){
-        if(heapar[start] < heapar[start * 2]){
+  while(heapar[start * 2] != 0){
+    if(heapar[start * 2 + 1] == 0){
+      if(heapar[start] < heapar[start * 2]){
+	 int templarge = heapar[start * 2];
+         int tempsmall = heapar[start];
+         heapar[start] = templarge;
+         heapar[start * 2] = tempsmall;
+         start = start * 2;
+	 break;
+      }
+    }
+    else{
+        if(heapar[start * 2 + 1] < heapar[start * 2]){
           int templarge = heapar[start * 2]; 
           int tempsmall = heapar[start];
           heapar[start] = templarge;
           heapar[start * 2] = tempsmall;
           start = start * 2;
         }
-        else if(heapar[start] < heapar[start * 2 + 1]){
-          int templarge = heapar[start * 2 + 1]; 
+	else if(heapar[start * 2 + 1] > heapar[start * 2]){
+          int templarge = heapar[start * 2 + 1];
           int tempsmall = heapar[start];
           heapar[start] = templarge;
           heapar[start * 2 + 1] = tempsmall;
           start = start * 2 + 1;
-        }
-        else{
-          break;
-        }
+	}
+	else{
+	  break;
+	}
+    }
     }  
   return largest;
 }
@@ -81,14 +96,14 @@ void heap::display(){
 }
 
 void heap::displayrunner(int tempposition, int depth, int size){
-  if(tempposition * 2 + 1 < size){
+  if(tempposition * 2 + 1 < size && heapar[tempposition] != 0){
     displayrunner(tempposition * 2 + 1, depth + 1, size);
   }
   for(int x = 0; x < depth; x++){
     cout << '\t';
   }
   cout << heapar[tempposition] << endl;
-  if(tempposition * 2 < size){
+  if(tempposition * 2 < size && heapar[tempposition] != 0){
     displayrunner(tempposition *2, depth +1,size);
   }
 }
