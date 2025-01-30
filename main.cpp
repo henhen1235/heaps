@@ -1,8 +1,9 @@
 #include <iostream>
 #include "heap.h"
-#include <cstring>
 
-int main{
-  cout << "hi"
+using namespace std;
+
+int main(){
+  cout << "hi" << endl;
   return 0;
 }

@@ -11,8 +11,8 @@ class heap{
   int removelargest();
   void removeall();
   void display();
-  void displayrunner(int tempposition, int times, int size);
+  void displayrunner(int tempposition, int depth, int size);
  public:
   int position;
-  int* heap;
+  int* heapar;
 };
